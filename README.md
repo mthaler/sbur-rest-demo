@@ -54,3 +54,46 @@ Transfer-Encoding: chunked
 }
 
 ```
+
+To update a coffee, create a file `/tmp/coffee.json` with the following contents:
+
+```json
+{
+    "id": "23bd820b-8a97-4f78-bc50-c2c477383b54",
+    "name": "Café Três Pontas"
+}
+```
+
+The run the following command:
+
+```bash
+$ http localhost:8080/coffees < /tmp/coffee.json 
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Fri, 11 Jun 2021 12:47:39 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "id": "23bd820b-8a97-4f78-bc50-c2c477383b54",
+    "name": "Café Gardena"
+}
+```
+
+We should now get the updated coffee:
+
+```bash
+$ http localhost:8080/coffees/23bd820b-8a97-4f78-bc50-c2c477383b54
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Fri, 11 Jun 2021 12:49:23 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "id": "23bd820b-8a97-4f78-bc50-c2c477383b54",
+    "name": "Café Três Pontas"
+}
+```
