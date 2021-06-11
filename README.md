@@ -8,7 +8,7 @@ The application will listen on port 8080. The [httpie](https://httpie.io/) is a 
 List all coffees:
 
 ```bash
-$ http localhost:8080/coffees
+$ http :8080/coffees
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
@@ -40,7 +40,7 @@ Transfer-Encoding: chunked
 List a coffee by id:
 
 ```bash
-$ http localhost:8080/coffees/717d8eb7-41fe-465f-8246-02ef3303f60f
+$ http :8080/coffees/717d8eb7-41fe-465f-8246-02ef3303f60f
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
@@ -67,7 +67,7 @@ To add a coffee, create a file `/tmp/coffee.json` with the following contents:
 The run the following command:
 
 ```bash
-$ http localhost:8080/coffees < /tmp/coffee.json 
+$ http :8080/coffees < /tmp/coffee.json 
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
