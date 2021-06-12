@@ -1,8 +1,8 @@
 package com.mthaler.sburrestdemo
 
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.Id
 
-class Coffee(val id: String, var name: String) {
-
-    constructor(name: String) : this(UUID.randomUUID().toString(), name)
-}
+@Entity
+class Coffee(val name: String = "Cup O' Joe", @Id val id: String = UUID.randomUUID().toString())

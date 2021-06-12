@@ -6,35 +6,27 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/coffees")
-class RestApiDemoController {
-
-    private val coffees = arrayListOf(Coffee("Café Cereza"), Coffee("Café Ganador"), Coffee("Café Lareño"), Coffee("Café Três Pontas"))
-
+class RestApiDemoController(private val coffeeRepository: CoffeeRepository) {
     @GetMapping
-    fun getCoffees(): Iterable<Coffee> = coffees
+    fun getCoffees() = coffeeRepository.findAll()
 
     @GetMapping("/{id}")
-    fun getCoffeeById(@PathVariable id: String): Coffee? = coffees.find { it.id == id }
+    fun getCoffeeById(@PathVariable id: String) = coffeeRepository.findById(id)
 
     @PostMapping
-    fun postCoffee(@RequestBody coffee: Coffee): Coffee {
-        coffees.add(coffee)
-        return coffee
-    }
+    fun postCoffee(@RequestBody coffee: Coffee) = coffeeRepository.save(coffee)
 
     @PutMapping("/{id}")
-    fun putCoffee(@PathVariable id: String, @RequestBody coffee: Coffee): ResponseEntity<Coffee> {
-        val index = coffees.indexOfFirst { it.id == id }
-        if (index >= 0) {
-            coffees.set(index, coffee)
-            return ResponseEntity(coffee, HttpStatus.OK)
-        } else {
-            return ResponseEntity(postCoffee(coffee), HttpStatus.CREATED)
-        }
+    fun putCoffee(
+        @PathVariable id: String,
+        @RequestBody coffee: Coffee
+    ): ResponseEntity<Coffee> {
+        return if (coffeeRepository.existsById(id))
+            ResponseEntity(coffeeRepository.save(coffee), HttpStatus.OK)
+        else
+            ResponseEntity(coffeeRepository.save(coffee), HttpStatus.CREATED)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCoffee(@PathVariable id: String) {
-        coffees.removeIf { it.id == id }
-    }
+    fun deleteCoffee(@PathVariable id: String) = coffeeRepository.deleteById(id)
 }
