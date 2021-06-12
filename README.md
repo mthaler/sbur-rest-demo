@@ -1,9 +1,11 @@
 # sbur-rest-demo
-Spring Boot Up &amp; Running REST API demo project converted to Kotlin
+Spring Boot Up &amp; Running REST API demo project
 
 ## Usage
 
-The application will listen on port 8080. The [httpie](https://httpie.io/) is a user-friendly HTTP client that can be used to test the API:
+The application will listen on port 8080. It uses the H2 database to store data in memory.
+
+The [httpie](https://httpie.io/) is a user-friendly HTTP client that can be used to test the API:
 
 List all coffees:
 
