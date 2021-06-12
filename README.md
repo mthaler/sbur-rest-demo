@@ -58,8 +58,52 @@ Transfer-Encoding: chunked
 To add a coffee, run the following command:
 
 ```bash
-$ http :8080/coffees <<<'{
+$ http :8080/coffees <<<'{    
     "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
     "name": "Café Gardena"
 }'
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Sat, 12 Jun 2021 12:47:29 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
+    "name": "Café Gardena"
+}
+
 ```
+
+The following command updates a coffee:
+
+```bash
+$ http PUT :8080/coffees/e9b27d06-3512-4b0c-8831-c27ffbbff15e <<<'{
+    "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
+    "name": "Café Supremo"
+}'
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Sat, 12 Jun 2021 12:49:24 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
+    "name": "Café Supremo"
+}
+
+```
+
+Finally, a coffee can be deleted with:
+
+```bash
+$ http DELETE :8080/coffees/e9b27d06-3512-4b0c-8831-c27ffbbff15e
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Length: 0
+Date: Sat, 12 Jun 2021 12:51:54 GMT
+Keep-Alive: timeout=60
+``` 
