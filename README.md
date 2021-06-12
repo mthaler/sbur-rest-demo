@@ -12,25 +12,25 @@ $ http :8080/coffees
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
-Date: Fri, 11 Jun 2021 12:39:27 GMT
+Date: Sat, 12 Jun 2021 12:38:51 GMT
 Keep-Alive: timeout=60
 Transfer-Encoding: chunked
 
 [
     {
-        "id": "717d8eb7-41fe-465f-8246-02ef3303f60f",
+        "id": "1f2fe4b7-2d00-42c9-ad92-39b6e0f1eae3",
         "name": "Café Cereza"
     },
     {
-        "id": "71d57267-d93a-4f53-9832-c6681eb694f8",
+        "id": "c276b750-2b5c-407e-832b-f439f0eb4956",
         "name": "Café Ganador"
     },
     {
-        "id": "76071538-1c67-41fb-8fdf-954dc24a55ae",
+        "id": "b6d1d371-7572-40ca-bda9-add530a9002e",
         "name": "Café Lareño"
     },
     {
-        "id": "23bd820b-8a97-4f78-bc50-c2c477383b54",
+        "id": "61e39b3f-da37-4f80-aea2-2d7824a076aa",
         "name": "Café Três Pontas"
     }
 ]
@@ -40,43 +40,26 @@ Transfer-Encoding: chunked
 List a coffee by id:
 
 ```bash
-$ http :8080/coffees/717d8eb7-41fe-465f-8246-02ef3303f60f
+$ http :8080/coffees/1f2fe4b7-2d00-42c9-ad92-39b6e0f1eae3
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
-Date: Fri, 11 Jun 2021 12:41:59 GMT
+Date: Sat, 12 Jun 2021 12:42:09 GMT
 Keep-Alive: timeout=60
 Transfer-Encoding: chunked
 
 {
-    "id": "717d8eb7-41fe-465f-8246-02ef3303f60f",
+    "id": "1f2fe4b7-2d00-42c9-ad92-39b6e0f1eae3",
     "name": "Café Cereza"
 }
 
 ```
 
-To add a coffee, create a file `/tmp/coffee.json` with the following contents:
-
-```json
-{
-    "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
-    "name": "Café Gardena"
-}
-```
-
-The run the following command:
+To add a coffee, run the following command:
 
 ```bash
-$ http :8080/coffees < /tmp/coffee.json 
-HTTP/1.1 200 
-Connection: keep-alive
-Content-Type: application/json
-Date: Fri, 11 Jun 2021 12:47:39 GMT
-Keep-Alive: timeout=60
-Transfer-Encoding: chunked
-
-{
+$ http :8080/coffees <<<'{
     "id": "e9b27d06-3512-4b0c-8831-c27ffbbff15e",
     "name": "Café Gardena"
-}
+}'
 ```
